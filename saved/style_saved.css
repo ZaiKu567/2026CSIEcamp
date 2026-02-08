@@ -1,0 +1,231 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+html{
+    font-size: 16px;
+}
+header{
+    background-color: rgb(4,71,49);
+    color: aliceblue;
+    height: 100px;
+    width: 100%;
+    position: sticky;
+    top: 0px;
+    z-index: 1;
+}
+header h1{
+    line-height: 100px;
+    position: absolute;
+    left: 5%;
+}
+nav{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    padding: 5%;
+    gap: 10px;
+    background-color: hsl(132, 50%, 90%);
+}
+.select{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    width: 100%;
+    height:fit-content;
+    padding: 5px;
+    /*background-color: rgb(37, 106, 245);*/
+}
+.carousel{
+    /*background-color: rgb(210, 40, 83);*/
+    display: flex;
+    gap: 1em;
+    max-width: 70%;
+    padding: 10px;
+    overflow-x:auto;
+    animation: left-slide-in 0.5s ease-out 0.2s both alternate;
+}
+@keyframes left-slide-in{
+    0%{
+        opacity: 0%;
+        transform: translateX(-20%);
+    }
+    100%{
+        opacity: 100%;
+        transform: translateX(0);
+    }
+}
+.card{
+    list-style: none;
+    font-size: 1.25rem;
+    font-weight: bold;
+    background-color: hsl(36, 78%, 55%);
+    border-radius: .5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 17rem; /*主軸尺寸(現在是x軸) 伸展0 壓縮0 基準17rem*/
+    height: 14rem; /*副軸尺寸(現在是y軸)*/
+    /*text-align: center;
+    align-content: center;*/
+}
+.card:hover{
+    box-shadow: 0 0px 10px black;
+    cursor: pointer;
+}
+.open-button{
+    background-color: aliceblue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+    border: 0.1px solid gray;
+}
+.open-button svg{
+    fill: black;
+    width: 20px;
+    height: auto;
+    transform-origin: center;
+    transition: transform 0.1s ease-in-out;
+}
+.open-button:hover{
+    cursor: pointer;
+    svg{
+    transform: rotate(45deg) scale(1.5);
+    fill: rgb(226, 148, 3);
+    }
+}
+.open-button svg:hover {
+    transform: rotate(45deg) scale(1.5);
+    fill: rgb(226, 148, 3);
+}
+#add{
+   display: none;
+}
+.wrappedbox{
+    position: fixed;
+    right: -100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#add:checked ~ .wrappedbox{
+    inset:40% 25%;
+    background-color: rgb(201, 212, 206);
+    padding: 20px;
+    border-radius:10px;
+    height:max-content;
+    width: 50%;
+    z-index: 20;
+    animation:pop-up 0.1s ease-out both alternate;
+}
+.overlay{
+    position: fixed;
+    right: -100%;
+}
+#add:checked ~ .overlay{
+    background-color: rgba(0,0,0, 0.2);
+    height: 100%;
+    width: 100%;    
+    inset: 0;
+    z-index: 10;
+}
+.new{
+    margin-top: 20px;
+    line-height: 36px;
+    padding: 0 10px;
+    border-radius: 20px;
+    border: 4px solid #ccc;
+    outline: none;
+    font-size: 20px;
+}
+@keyframes pop-up{
+    from{
+        opacity: 0;
+        transform:scale(0.3);
+        box-shadow: 0 0px 0px rgba(0,0,0,0.1);
+    }
+    to{
+        opacity: 1;
+        translate:scale(1);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    }
+}
+.close-button{
+    width:fit-content;    
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    /*background-color: aqua;*/
+    pointer-events: none;
+}
+.close-button svg{
+    pointer-events: auto;
+}
+.close-button svg:hover{
+    fill: rgb(0, 60, 255);
+}
+.content{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 10px;
+    width: 80%;
+    /*background-color: blueviolet;*/
+}
+.content label{
+    background-color: aliceblue;
+    position:absolute;
+    top: 50%;
+    left: 5vw;
+    pointer-events: none;
+    transform: translateY(-50%);
+    padding: 0 5px;
+    transition: 0.3s ease-out;
+    font-size: 1.5rem;
+    /*border-radius: 15px;*/
+}
+.content input{
+    transform: translateY(-16%);
+    display: block;
+    font-size: 1.5rem;
+    width: 80%;
+    padding: 10px 15px;
+    border: 0.5px solid black;
+    outline: none;
+    background-color: aliceblue;
+    border-radius: 0%;
+}
+.content input:focus~label{
+    top: 0;
+    left: 2vw;
+    font-size: 16px;
+    background-color: transparent;
+}
+.content button{
+    position: relative;
+    border: 0.5px solid black;
+    background-color: rgb(16, 206, 16);
+    font-size: 1.75rem;
+    padding: 12px 15px;
+    top: 10%;
+}
+.content button:hover{
+    cursor: pointer;
+    background-color: rgb(5, 248, 5);
+}
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(25, 163, 87);
+    height: 500px;
+}
